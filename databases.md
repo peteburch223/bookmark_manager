@@ -26,3 +26,36 @@ SQL
 - limits to vertical scalability and distributivity
 - ACID operation guarantees aspects of operation
 - structure facilitates joining data
+
+
+SQL
+===
+Structured Query Language - special purpose language for managing data held in an RDBMS
+- data definition Language: defines data structures
+  - CREATE, DROP, ALTER, RENAME
+- data manipulation Language
+  - INSERT, SELECT, UPDATE, DELETE
+- data control language: controls access
+  - GRANT, REVOKE
+
+
+
+CRUD
+====
+Acronym for the four basic functions of persistent storage.
+
+C: Create
+---------
+INSERT INTO <table> (<columns>) VALUES (<values>)
+
+R: Read / Retrieve
+------------------
+SELECT <columns> FROM <table> WHERE <field> = <test_value>
+
+U: Update
+---------
+UPDATE <table> SET <column> = <value> [,<column> = <value>...]
+
+D: Delete
+---------
+DELETE FROM <table> WHERE <column> = <value>
