@@ -63,6 +63,7 @@ GEM
       dm-core (~> 1.2.0)
     do_postgres (0.10.17)
       data_objects (= 0.10.17)
+    dotenv (2.1.0)
     extlib (0.9.16)
     fastercsv (1.5.5)
     ffi (1.9.10)
@@ -110,6 +111,7 @@ DEPENDENCIES
   capybara
   data_mapper
   dm-postgres-adapter
+  dotenv
   rspec-sinatra
   selenium-webdriver
   sinatra
