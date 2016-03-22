@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require_relative './lib/link'
 
+ENV["RACK_ENV"] ||= "development"
+
 class Bookmark < Sinatra::Base
   get '/' do
     @links = Link.all
