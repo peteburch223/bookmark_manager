@@ -1,39 +1,18 @@
-<h1>Bookmarks</h1>
-<div class="link-box">
-  <ul id="links">
-    <% @links.each do |link| %>
-      <li><a href="<%=link.href %>"><%=link.title %></a></li>
-    <% end %>
-  </ul>
-</div>
+<head>
+  <link rel="stylesheet" href="/styles.css">
+</head>
 
-<style>
-  ul#links{
-    font-family: 'Futura', sans-serif;
-    list-style: none;
-    padding-left: 0;
-    /*background-color: #0D81FF;*/
-  }
-  a {
-    background-color:transparent; text-decoration:none
-  }
-  a:link    {color: white;}
-  a:visited {color: white;}
-  a:hover   {color:#ff0066;}
-  a:active  {color:#b30047;}
-
-  html {
-    font-family: 'Futura', sans-serif;
-    text-align: center;
-    background-color: #0DFF74
-  }
-  h1 {
-    text-transform: uppercase;
-    letter-spacing: 5px;
-  }
-  div {
-    width: 50%;
-    margin: 0 auto;
-    background-color: rgba(255, 0, 0, 0.1);
-  }
-</style>
+<body>
+  <h1>- Bookmarks -</h1>
+  <h2>Home</h2>
+  <div class="link-box">
+    <ul id="links">
+      <% @links.each do |link| %>
+        <li><a href="<%=link.href %>"><%=link.title %></a></li>
+      <% end %>
+    </ul>
+  </div>
+  <form class="" action='/add_link' method="get">
+    <input type="submit" value="Add Link">
+  </form>
+</body>

@@ -10,4 +10,8 @@ class Link
   property :href, Text
 end
 
-require_relative 'helpers/database_helper'
+USER = 'simonglancy'
+DB_NAME = 'bookmarks'
+DataMapper.setup(:default, "postgres://#{USER}@localhost/#{DB_NAME}")
+DataMapper.finalize
+DataMapper.auto_upgrade!
