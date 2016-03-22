@@ -1,42 +1,21 @@
 require 'spec_helper'
-require 'data_mapper'
-require 'dm-postgres-adapter'
-require 'dotenv'
 
-RSpec.configure do |c|
-  c.filter_run_excluding :broken => true
-end
+feature 'Viewing links' do
 
-USER = ENV['USER']
-PASSWORD = ENV['PASSWORD']
-HOSTNAME = ENV['HOSTNAME']
-DATABASE = ENV['DATABASE']
+  scenario 'I can see existing links on the links page' do
+    Link.create(url: 'http://www.makersacademy.com', title: 'Makers Academy')
 
-RSpec.configure do
-  DataMapper.setup(:default,"postgres://#{USER}:#{PASSWORD}@#{HOSTNAME}/#{DATABASE}")
-  DataMapper::Logger.new($stdout, :debug)
-end
+    visit '/links'
 
-class Link
-  include DataMapper::Resource
+    # as this is our first feature test,
+    # the following expectation is a quick check that everything is working.
+    expect(page.status_code).to eq 200
+    # you might remove this later.
 
-  property :id,     Serial
-  property :title,  String
-  property :url,    String
-  property :date,   Date
-end
-
-RSpec.configure do
-  DataMapper.finalize.auto_upgrade!
-end
-
-feature 'when opening front page' do
-  scenario 'displays list of websites' do
-
-    visit '/'
-    links = Link.all
-
-    p links
-    expect(page).to have_content 'google.com'
+    # why do we use within here?
+    # might we get a false positive if we just test for 'Makers Academy'?
+    within 'ul#links' do
+      expect(page).to have_content('Makers Academy')
+    end
   end
 end
