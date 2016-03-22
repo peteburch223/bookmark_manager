@@ -53,3 +53,6 @@ input[type="submit" i] {
     font-size: 0.9em;
     border: 1px solid black;
 }
+input[type="submit" i]:hover {
+
+}

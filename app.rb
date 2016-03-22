@@ -13,7 +13,6 @@ class Bookmark < Sinatra::Base
   end
 
   post '/new' do
-    p Link.all
     Link.create(title: params[:title], href: params[:href])
     redirect to('/')
   end
