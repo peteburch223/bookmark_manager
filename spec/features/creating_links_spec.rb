@@ -11,6 +11,7 @@ feature 'Creating links' do
 
     fill_in "title", with: 'BBC'
     fill_in "url",   with: 'http://www.bbc.co.uk'
+    fill_in "tag",   with: 'news'
     click_button('Save')
 
     expect(current_path).to eq('/links')
@@ -18,6 +19,7 @@ feature 'Creating links' do
 
     within 'ul#links' do
       expect(page).to have_content('BBC')
+      # expect(page).to have_content('news')
     end
   end
 end
