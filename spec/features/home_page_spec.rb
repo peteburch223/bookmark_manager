@@ -6,7 +6,7 @@ feature 'Add link to BOOKMARKS' do
     click_button("Add Link")
     fill_in('title', with: 'NME')
     fill_in('href', with: 'http://www.nme.com' )
-    fill_in('tags', with: 'news')
+    fill_in('tags', with: 'news, music')
     click_button("Save")
 
     visit '/'
@@ -23,9 +23,10 @@ feature 'Add link to BOOKMARKS' do
     fill_in('tags', with: 'bubbles')
     click_button("Save")
 
-    link = Link.first
+    link = Link.all
     expect(page).to have_link 'Melody Maker'
     expect(link.tags.map(&:name)).to include('news')
+    expect(link.tags.map(&:name)).to include('music')
 
   end
 end
