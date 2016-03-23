@@ -10,7 +10,7 @@ class Link
   property :href, Text
 end
 
-
-DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{ENV['RACK_ENV']}")
+connection_string = "postgres://localhost/bookmark_manager_#{ENV['RACK_ENV']}"
+DataMapper.setup(:default, ENV['DATABASE_URL'] || connection_string)
 DataMapper.finalize
 DataMapper.auto_upgrade!
