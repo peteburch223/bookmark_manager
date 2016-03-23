@@ -7,7 +7,7 @@ require_relative 'models/data_mapper_setup'
 
 class BookmarkManager < Sinatra::Base
 
-  set :environment, :development
+  # set :environment, :development
   data_mapper_finalize
 
   get '/links' do
