@@ -16,16 +16,9 @@ feature 'Add link to BOOKMARKS' do
     fill_in('tags', with: 'bubbles')
     click_button("Save")
 
-    visit '/'
-    click_button("Add Link")
-    fill_in('title', with: 'Smash Hits')
-    fill_in('href', with: 'http://www.smash.com' )
-    fill_in('tags', with: 'bubbles')
-    click_button("Save")
+    visit '/tags/bubbles'
 
-    link = Link.first
+    expect(page).not_to have_link 'NME'
     expect(page).to have_link 'Melody Maker'
-    expect(link.tags.map(&:name)).to include('news')
-
   end
 end

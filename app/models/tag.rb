@@ -5,6 +5,6 @@ class Tag
   has n, :links, through: Resource
 
   property :id, Serial
-  property :name, Text
+  property :name, Text, :lazy => false
 
 end

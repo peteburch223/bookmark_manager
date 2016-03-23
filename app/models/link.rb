@@ -5,8 +5,8 @@ class Link
   has n, :tags, through: Resource
 
   property :id, Serial
-  property :title, Text
-  property :href, Text
+  property :title, Text, :lazy => false
+  property :href, Text, :lazy => false
 
 
 end
