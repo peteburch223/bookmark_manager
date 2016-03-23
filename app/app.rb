@@ -20,12 +20,9 @@ class Bookmark < Sinatra::Base
   post '/new' do
     link = Link.new(title: params[:title], href: params[:href])
     tag = Tag.create(name: params[:tags])
-    p params[:tags]
-    p link.tags
     link.tags << tag
-    p link.tags
     link.save
-    redirect to('/')
+  redirect to('/')
   end
 
   # start the server if ruby file executed directly
