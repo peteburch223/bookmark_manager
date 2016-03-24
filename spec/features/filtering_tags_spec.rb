@@ -1,7 +1,7 @@
 
 
-feature 'Add link to BOOKMARKS' do
-  scenario 'Click Add Link and submit' do
+feature 'Filtering tags' do
+  scenario 'retrieve links by tag' do
     visit '/links'
     click_button("Add Link")
     fill_in('title', with: 'NME')

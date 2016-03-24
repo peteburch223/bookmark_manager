@@ -1,7 +1,8 @@
+require_relative 'web_helpers.rb'
+
 feature 'Add user account' do
   scenario 'user signup' do
-    visit '/'
-
+    visit '/sign_up'
     fill_in('email', with: 'test@example.com')
     fill_in('password', with: 'password')
     fill_in('password_confirmation', with: 'password')

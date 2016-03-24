@@ -3,7 +3,7 @@ feature 'Blank email confirmation' do
 
     p User.all.count
 
-    visit '/'
+    visit '/sign_up'
 
     fill_in('email', with: '')
     fill_in('password', with: 'password')

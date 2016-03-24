@@ -5,15 +5,26 @@ class User
   include BCrypt
 
   attr_accessor :password_confirmation
-  attr_reader :password
+  # attr_reader :password
 
   validates_confirmation_of :password, :confirm => :password_confirmation, :message => 'Password and confirmation password do not match'
-  # validates_format_of :email, :as => :email_address
-  # validates_presence_of :email
+
+
+  def authenticate(password)
+    if self && BCrypt::Password.new(self.password_hash) == password
+      self
+    else
+      nil
+    end
+  end
+
+  def password
+    @password ||= Password.new(password_hash)
+  end
 
   def password=(password)
     @password = password
-    self.password_hash = Password.create(password)
+    self.password_hash = BCrypt::Password.create(password)
   end
 
   property :id, Serial

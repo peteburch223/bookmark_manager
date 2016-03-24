@@ -1,11 +1,11 @@
 feature 'duplicate user registration' do
   scenario 'Duplicate user registration' do
-    visit '/'
+    visit '/sign_up'
     fill_in('email', with: 'adil@adil.com')
     fill_in('password', with: 'password')
     fill_in('password_confirmation', with: 'password')
     click_button('Sign Up')
-    visit '/'
+    visit '/sign_up'
     fill_in('email', with: 'adil@adil.com')
     fill_in('password', with: 'password')
     fill_in('password_confirmation', with: 'password')

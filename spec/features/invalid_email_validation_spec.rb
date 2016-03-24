@@ -1,6 +1,6 @@
 feature 'Invalid email confirmation' do
   scenario 'invalid email raises error' do
-    visit '/'
+    visit '/sign_up'
 
     fill_in('email', with: 'crap')
     fill_in('password', with: 'password')

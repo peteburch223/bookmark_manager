@@ -7,7 +7,25 @@ class Bookmark < Sinatra::Base
   register Sinatra::Flash
   enable :sessions
   set :session_secret, 'super secret'
+
+
+
   get '/' do
+      erb(:sign_in)
+  end
+
+  post '/sign_in' do
+    @user = User.first(:email => params[:email])
+    if @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect '/links'
+    else
+      flash[:errors] = @user.errors.full_messages
+      redirect '/sign_up'
+    end
+  end
+
+  get '/sign_up' do
     erb(:sign_up)
   end
 
@@ -21,8 +39,7 @@ class Bookmark < Sinatra::Base
       redirect '/links'
     else
       flash[:errors] = @user.errors.full_messages
-      # flash[:invalid_email] = @user.errors[:email] if @user.errors.on(:email)
-      redirect '/'
+      redirect '/sign_up'
     end
   end
 

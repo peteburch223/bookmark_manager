@@ -1,8 +1,7 @@
 feature 'Password confirmation' do
   scenario 'mismatched password raises error' do
-    p User.all.count
 
-    visit '/'
+    visit '/sign_up'
 
     fill_in('email', with: 'test@example.com')
     fill_in('password', with: 'password')
