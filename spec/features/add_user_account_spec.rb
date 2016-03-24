@@ -10,5 +10,6 @@ feature 'Add user account' do
     expect(page).to have_content('Welcome, test@example.com')
     user = User.last
     expect(user.email).to eq 'test@example.com'
+    expect(user.password_hash).not_to eq 'password'
   end
 end

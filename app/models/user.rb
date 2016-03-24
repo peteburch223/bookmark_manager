@@ -1,8 +1,18 @@
 class User
   include DataMapper::Resource
+  include BCrypt
+
+  # def password
+  #   @password ||= Password.new(password_hash)
+  # end
+
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password_hash = @password
+  end
 
   property :id, Serial
   property :email, String, :lazy => false
-  property :password, String
+  property :password_hash, String, :length => 128
 
 end

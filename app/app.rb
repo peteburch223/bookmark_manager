@@ -12,9 +12,11 @@ class Bookmark < Sinatra::Base
   end
 
   post '/sign_up' do
-    User.create(email: params[:email], password: params[:password])
+    @user = User.new(email: params[:email])
+    @user.password = params[:password]
+    @user.save!
     session[:me] = params[:email]
-    p User.last.email
+    p User.all
     redirect '/links'
   end
 
