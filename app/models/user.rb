@@ -17,10 +17,11 @@ class User
   end
 
   property :id, Serial
-  property :email, String, :required => true, :format => :email_address,
+  property :email, String, :required => true, :format => :email_address, :unique => true,
     :messages => {
       :presence => 'Please enter an email address',
-      :format => 'Please enter a valid email address'
+      :format => 'Please enter a valid email address',
+      :is_unique => 'This user already exists'
     }
   property :password_hash, String, :length => 128
 
