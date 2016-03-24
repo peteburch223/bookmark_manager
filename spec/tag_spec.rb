@@ -16,7 +16,4 @@ describe Tag do
       tag.create_tags(link_tag, link, tags)
     end
   end
-
-
-
 end
