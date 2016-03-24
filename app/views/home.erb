@@ -1,18 +1,15 @@
-<head>
-  <link rel="stylesheet" href="/styles.css">
-</head>
 
-<body>
   <h1>- Bookmarks -</h1>
   <h2>Home</h2>
-  <div class="link-box">
+
     <ul id="links">
       <% @links.each do |link| %>
         <li><a href="<%=link.href %>"><%=link.title %></a></li>
       <% end %>
     </ul>
-  </div>
-  <form class="" action='/add_link' method="get">
-    <input type="submit" value="Add Link">
+
+  <form action='/add_link' method="get">
+    <div class="form-group">
+      <input type="submit" class="btn btn-default" id="add_link" value="Add Link">
+    </div>
   </form>
-</body>

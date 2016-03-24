@@ -1,14 +1,26 @@
 <% if flash[:errors] && !flash[:errors].empty? %>
-  Please refer to the following errors below:
-  <ul id='errors'>
+  <h2>Please refer to the following errors below:</h2>
+  <ul class="list-group" id='errors'>
     <% flash[:errors].each do |error| %>
-      <li><%= error %></li>
+      <li class="list-group-item"><%= error %></li>
     <% end %>
   </ul>
 <% end %>
+
 <form action="/sign_up" method="post">
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="password" name="password_confirmation" placeholder="Password Confirmation" required>
-    <input type="submit" value="Sign Up">
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" name="email" class="form-control" id="email" required>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" name="password" class="form-control" id="password"  required>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password Confirmation:</label>
+    <input type="password" name="password_confirmation" class="form-control" id="password_confirmation"  required>
+  </div>
+  <div class="form-group">
+    <input type="submit" class="btn btn-default" id="sign_up" value="Sign Up">
+  </div>
 </form>
