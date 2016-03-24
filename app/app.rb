@@ -5,7 +5,21 @@ require_relative 'models/data_mapper_setup'
 
 class Bookmark < Sinatra::Base
 
+  enable :sessions
+
   get '/' do
+    erb(:sign_up)
+  end
+
+  post '/sign_up' do
+    User.create(email: params[:email], password: params[:password])
+    session[:me] = params[:email]
+    p User.last.email
+    redirect '/links'
+  end
+
+  get '/links' do
+    @name = session[:me]
     @links = Link.all
     erb(:home)
 
@@ -24,7 +38,7 @@ class Bookmark < Sinatra::Base
   post '/new' do
     link = Link.create(title: params[:title], href: params[:href])
     Tag.create_tags(LinkTag,link, params[:tags])
-    redirect to('/')
+    redirect to('/links')
   end
 
   # start the server if ruby file executed directly
