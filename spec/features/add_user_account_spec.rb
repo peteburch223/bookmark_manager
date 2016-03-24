@@ -4,6 +4,7 @@ feature 'Add user account' do
 
     fill_in('email', with: 'test@example.com')
     fill_in('password', with: 'password')
+    fill_in('password_confirmation', with: 'password')
     click_button('Sign Up')
 
     expect(User.all.count).to eq 1

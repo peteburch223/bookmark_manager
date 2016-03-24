@@ -10,6 +10,7 @@ require 'capybara/rspec'
 require 'rspec'
 require 'pry'
 require 'rake'
+require 'tilt/erb'
 
 
 

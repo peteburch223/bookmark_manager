@@ -13,4 +13,8 @@ namespace :db do
     DataMapper.auto_migrate!
     puts "Auto-migrate complete (data was lost)"
   end
+
+  task :update_migrate => [:auto_upgrade, :auto_migrate] do
+    puts "updating database..."
+  end
 end
