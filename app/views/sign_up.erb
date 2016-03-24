@@ -1,8 +1,10 @@
-<% if flash[:password_mismatch] %>
-<p><%= flash[:password_mismatch] %></p>
-<% end %>
-<% if flash[:invalid_email] %>
-<p><%= flash[:invalid_email] %></p>
+<% if flash[:errors] && !flash[:errors].empty? %>
+  Please refer to the following errors below:
+  <ul id='errors'>
+    <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
 <% end %>
 <form action="/sign_up" method="post">
     <input type="email" name="email" placeholder="Email" required>
