@@ -5,12 +5,9 @@ class User
   include BCrypt
 
   attr_accessor :password_confirmation
+  attr_reader :password
 
   validates_confirmation_of :password, :confirm => :password_confirmation
-
-  def password
-    @password
-  end
 
   def password=(password)
     @password = password

@@ -8,6 +8,7 @@ feature 'Password confirmation' do
     click_button('Sign Up')
 
     expect(User.all.count).to eq 0
+    expect(page).to have_content('Password and confirmation password do not match')
 
   end
 end
