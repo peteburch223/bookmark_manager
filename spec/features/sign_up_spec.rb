@@ -1,5 +1,3 @@
-require_relative 'web_helpers.rb'
-
 feature 'Add user account' do
   scenario 'user signup' do
     visit '/users/new'

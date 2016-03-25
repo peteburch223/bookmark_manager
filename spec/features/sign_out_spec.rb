@@ -1,12 +1,10 @@
-require_relative 'web_helpers.rb'
-
 feature 'Sign Out' do
   scenario 'user sign-out' do
 
     email = 'test@test.com'
     password = 'password'
 
-    sign_up(email, password)
+    sign_up
     sign_in(email, password)
     expect(page).to have_content("Welcome, #{email}")
 

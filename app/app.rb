@@ -4,6 +4,7 @@ require_relative 'models/data_mapper_setup'
 require 'sinatra/flash'
 
 class Bookmark < Sinatra::Base
+  use Rack::MethodOverride
   register Sinatra::Flash
   enable :sessions
   set :session_secret, 'super secret'
@@ -24,9 +25,16 @@ class Bookmark < Sinatra::Base
       session[:user_id] = user.id
       redirect '/links'
     else
-      flash[:errors] = ["Not able to authenticate"]
+      flash[:notice] = User.errors.full_messages
       redirect '/sessions/new'
     end
+  end
+
+  delete '/sessions' do
+    session[:user_id] = nil
+    p current_user
+    flash.keep[:notice] = "Goodbye"
+    redirect ('/links')
   end
 
   get '/users/new' do
@@ -42,16 +50,9 @@ class Bookmark < Sinatra::Base
       session[:user_id] = @user.id
       redirect '/links'
     else
-      flash[:errors] = @user.errors.full_messages
+      flash[:notice] = @user.errors.full_messages
       redirect '/users/new'
     end
-  end
-
-  post '/sign_out' do
-    session[:user_id] = nil
-    p current_user
-    flash[:goodbye] = "Goodbye"
-    redirect ('/links')
   end
 
   get '/links' do
