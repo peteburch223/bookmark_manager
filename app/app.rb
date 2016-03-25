@@ -9,27 +9,31 @@ class Bookmark < Sinatra::Base
   set :session_secret, 'super secret'
 
 
-
   get '/' do
-      erb(:sign_in)
+    redirect '/links'
   end
 
-  post '/sign_in' do
-    @user = User.first(:email => params[:email])
-    if @user.authenticate(params[:password])
-      session[:user_id] = @user.id
+  get '/sessions/new' do
+    p session
+    erb(:'sessions/new')
+  end
+
+  post '/sessions' do
+    user = User.first(:email => params[:email])
+    if User.authenticate(params[:email], params[:password])
+      session[:user_id] = user.id
       redirect '/links'
     else
-      flash[:errors] = @user.errors.full_messages
-      redirect '/sign_up'
+      flash[:errors] = ["Not able to authenticate"]
+      redirect '/sessions/new'
     end
   end
 
-  get '/sign_up' do
-    erb(:sign_up)
+  get '/users/new' do
+    erb(:'users/new')
   end
 
-  post '/sign_up' do
+  post '/users' do
     @user = User.new(email: params[:email])
     @user.password = params[:password]
     @user.password_confirmation  = params[:password_confirmation]
@@ -39,8 +43,15 @@ class Bookmark < Sinatra::Base
       redirect '/links'
     else
       flash[:errors] = @user.errors.full_messages
-      redirect '/sign_up'
+      redirect '/users/new'
     end
+  end
+
+  post '/sign_out' do
+    session[:user_id] = nil
+    p current_user
+    flash[:goodbye] = "Goodbye"
+    redirect ('/links')
   end
 
   get '/links' do

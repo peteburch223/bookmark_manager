@@ -6,11 +6,11 @@ describe User do
 
   describe '#authenticate' do
     it 'authenticates when given a valid email address and password' do
-      authenticated_user = user.authenticate(user.password)
+      authenticated_user = User.authenticate(user.email, user.password)
       expect(authenticated_user).to eq user
     end
     it 'fails to authenticates when given an invalid email address and password' do
-      authenticated_user = user.authenticate('garbage')
+      authenticated_user = User.authenticate(user.email, 'garbage')
       expect(authenticated_user).to eq nil
     end
   end

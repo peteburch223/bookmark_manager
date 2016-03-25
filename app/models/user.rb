@@ -10,9 +10,10 @@ class User
   validates_confirmation_of :password, :confirm => :password_confirmation, :message => 'Password and confirmation password do not match'
 
 
-  def authenticate(password)
-    if self && BCrypt::Password.new(self.password_hash) == password
-      self
+  def self.authenticate(email, password)
+    user = first(email:email)
+    if user && BCrypt::Password.new(user.password_hash) == password
+      user
     else
       nil
     end

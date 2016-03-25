@@ -15,6 +15,9 @@
       <% if current_user %>
         <p>Welcome, <%= current_user.email %></p>
       <% end %>
+      <% if !current_user && flash[:goodbye] %>
+        <p><%= flash[:goodbye] %></p>
+      <% end %>
       <%= yield %>
     </div>
   </body>

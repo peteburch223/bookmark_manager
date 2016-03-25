@@ -1,7 +1,7 @@
 feature 'Password confirmation' do
   scenario 'mismatched password raises error' do
 
-    visit '/sign_up'
+    visit '/users/new'
 
     fill_in('email', with: 'test@example.com')
     fill_in('password', with: 'password')

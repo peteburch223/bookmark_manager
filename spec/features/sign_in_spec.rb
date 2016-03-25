@@ -6,8 +6,10 @@ feature 'Sign in' do
     email = 'test@test.com'
     password = 'password'
 
+
+
     sign_up(email, password)
-    visit '/'
+    visit '/sessions/new'
     fill_in('email', with: email)
     fill_in('password', with: password)
     click_button('Sign In')
