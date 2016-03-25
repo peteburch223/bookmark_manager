@@ -5,10 +5,8 @@ class User
   include BCrypt
 
   attr_accessor :password_confirmation
-  # attr_reader :password
 
   validates_confirmation_of :password, :confirm => :password_confirmation, :message => 'Password and confirmation password do not match'
-
 
   def self.authenticate(email, password)
     user = first(email:email)

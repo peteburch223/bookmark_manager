@@ -8,5 +8,4 @@ class Link
   property :title, Text, :lazy => false
   property :href, Text, :lazy => false
 
-
 end
