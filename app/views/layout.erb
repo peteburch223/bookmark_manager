@@ -12,18 +12,8 @@
   </head>
   <body>
     <div class="container">
-      <% if current_user %>
-        <p>Welcome, <%= current_user.email %></p>
-        <form action='/sessions' method="post">
-          <div class="form-group">
-            <input type="hidden" name="_method" value="delete">
-            <input type="submit" class="btn btn-default" id="sign_out" value="Sign Out">
-          </div>
-        </form>
-      <% end %>
-      <% if flash[:notice] %>
-        <p><%= flash[:notice] %></p>
-      <% end %>
+      <%= partial :welcome %>
+      <%= partial :flash %>
       <%= yield %>
     </div>
   </body>
